@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.reg{
+    margin-top: 50px;
+}
+.reg1{
+    background-color: rgb(40, 37, 37);
+    padding: 30px;
+    border-radius: 30px;
+}
+.reg2 h1{
+    text-align: center;
+    font-size: 30px;
+    color: aqua;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+}
+.reg3{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.reg3 button{
+    /* background-color: aqua; */
+    border: none;
+    border-radius: 15px;
+    width: 70%;
+    padding: 5px;
+    font-weight: 650;
+    font-size: 22px;
+    background: linear-gradient(grey, rgb(29, 152, 183));
+}
+.reg3 button:hover{
+    width: 40%;
+    transition: .5s ;
+}
+.reg5{
+    background-color: white;
+    padding: 40px;
+    border-radius: 100px;
+    /* border: 5px solid aqua; */
+    box-shadow: 0 0 10px 6px grey;
+}
+.reg4{
+    margin-top: 150px;
+}
+.reg6 h1{
+    text-align: center;
+    font-size: 30px;
+    color:  rgb(29, 152, 183);
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+}
