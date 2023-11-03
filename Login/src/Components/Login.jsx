@@ -1,70 +1,77 @@
-import { useState } from 'react';
+import React, { useState } from 'react'
 import tea from './styles.module.css'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    // const navigate=useNavigate();
-    const[user, setUser]=useState({
-        // Name:'',
-        Email:'',
-        Password:'',
-        // RepeatPassword:''
-    })
-    const[errors,setErrors]=useState({});
-    const submitData =(e)=>{
-        e.preventDefault();
+    const navigate=useNavigate();
+    const[user,setUser]=useState({
+        email:'',
+        password:''
+    });
+    const[error,setErrors]=useState('')
 
-        const newErrors={};
 
-        if(user.Email.trim()===''){
-            newErrors.EmailErr='Your Email Is Required'
-        }
-        if(user.Password.trim()===''){
-            newErrors.PasswordErr='Your Password Is Required'
-        }
+    const handleChange=(e)=>{
+    const {name,value}= e.target;
+    setUser((prevUser)=>(
+      {
+        ...prevUser,
+        [name]:value
+      }
+    ))
+
+  };
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    if(localStorage.getItem('users')){
+      const users=JSON.parse(localStorage.getItem('users'));
+      const matchedUser=users.find(
+        (u)=>u.Email === user.email && u.Password===user.password
+      );
    
-        setErrors(newErrors)
-        if(Object.keys(newErrors).length===0){
-            const users=JSON.parse(localStorage.getItem('users')) ||[]
-            users.push(user)
-            localStorage.setItem('users',JSON.stringify(users))
-            navigate('/login')
-        }
-        // console.log(user)
+        if(matchedUser){
+        //succesfful login
+        alert("Successful login")
+        navigate('/', {replace: true})
+      }
+      else{
+        //invalid login
+        setErrors("Invalid login details")
+      }
+    }
+    else{
+      //No registered Users
+      setErrors("You have not registered Please do first")
+    };
     }
   return (
     <div>
       <section>
-        <form action="" className={tea.reg4} onSubmit={submitData}>
+        <form action="" className={tea.reg4} onSubmit={handleSubmit}>
             <div style={{margin:'auto', maxWidth:'350px'}} className={tea.reg5}>
                 <div className={tea.reg6}>
                     <h1>LOGIN</h1>
                 </div>
 
-<div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" 
-    onChange={(e)=>{
-        setUser({...user,Email:e.target.value})
-      }}
-  />
-  <label for="floatingInput">Email</label>
-  {errors.EmailErr && <span style={{color:'red'}}>{errors.EmailErr}</span>}
+                <div className="form-floating mb-3">
+                  <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"  name="email" value={user.email} onChange={handleChange}/>
+                  <label for="floatingInput">Email</label>
+                </div>
+                <div className="form-floating mb-3">
+                  <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com"  name="password" value={user.password} onChange={handleChange}/>
+                  <label for="floatingInput">Password</label>
+                </div>
 
-</div>
-<div class="form-floating mb-3">
-  <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com"
-   onChange={(e)=>{
-    setUser({...user,Password:e.target.value})
-  }}
-  />
-  <label for="floatingInput">Password</label>
-  {errors.PasswordErr && <span style={{color:'red'}}>{errors.PasswordErr}</span>}
+                {/* errors to display here  */}
+                {error && <div className='alert alert-danger'>{error}</div>}
+              <div className={tea.reg3}>
+                  <button type='submit'>Login</button>
+              </div>
 
-</div>
-
-<div className={tea.reg3}>
-    <button type='submit'>Login</button>
-</div>
+              <div className="text-center mt-3">
+                  {/* <p>Don't have an account? <Link to="/Registers" className='text-success'>Register here</Link></p> */}
+                </div>
             </div>
         </form>
       </section>

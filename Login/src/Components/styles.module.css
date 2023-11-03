@@ -56,3 +56,50 @@
     margin-bottom: 20px;
     letter-spacing: 5px;
 }
+
+/* Avatar section */
+.it{
+    background-color: ghostwhite;
+    padding: 10px;
+    margin-top: 10px;
+    width: fit-content;
+
+}
+.it:hover{
+    transition: .3s;
+    transform: scale(1.025);
+    box-shadow: 00 5px 14px rgb(180, 178, 178);
+}
+
+.it img{
+    width: 200px;
+    height: 200px;
+}
+
+.its{
+    margin-top: 10px;
+    /* background-color: whitesmoke; */
+ 
+}
+.its p{
+    padding: 0;
+    margin: 0;
+}
+.hom{
+    font-size: 15px;
+    font-weight: 800;
+}
+.ho{
+    text-decoration: none;
+    color: orange;
+    padding-top: 5px;
+}
+.hoo{
+    border: none;
+    color: orange;
+    font-size: 15px;
+    font-weight: 800;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: wheat;
+}
